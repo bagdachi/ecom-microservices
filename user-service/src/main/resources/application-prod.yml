@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:5432/postgres
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 15
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+#  data:
+#    redis:
+#      host: ${REDIS_HOST:prod-redis}
+#      port: 6379
+
+server:
+  port: 8081
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+        same-site: strict
+
+#jwt:
+#  secret: ${JWT_SECRET}
+#  access-token-expiration-minutes: 10
+#  refresh-token-expiration-days: 3
+#  issuer: user-service.prod.ecom
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    access-token-expiry: 30
+    refresh-token-expiry: 14
+
+logging:
+  level:
+    root: INFO
+    com.bagdachi: INFO
+  file:
+    name: /home/bagdachi/Desktop/log/ecom/user-service/user.log
+
+#cors:
+#  allowed-origins: "https://your-ecom-ui.com"
